@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhf1i4gj8s8ky"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menus/network_menu.gd" id="1_wpfgo"]
+
+[node name="NetworkMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wpfgo")
+metadata/_edit_use_anchors_ = true
+
+[node name="btnHost" type="Button" parent="."]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 233.0
+offset_right = 528.0
+offset_bottom = 293.0
+text = "Crear Partida"
+
+[node name="btnJoin" type="Button" parent="."]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 233.0
+offset_right = 732.0
+offset_bottom = 293.0
+text = "Unirse a Partida"
+
+[node name="inputName" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -189.0
+offset_right = 99.0
+offset_bottom = -143.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Nombre de Jugador"
+alignment = 1
+
+[node name="cbxPlayers" type="SpinBox" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 108.0
+offset_top = -189.0
+offset_right = 191.063
+offset_bottom = -143.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 2.0
+max_value = 4.0
+value = 2.0
+alignment = 1
+
+[node name="Label" type="Label" parent="cbxPlayers"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 7.93701
+offset_top = -13.0
+offset_right = 159.937
+offset_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Jugadores Maximos"
+
+[connection signal="pressed" from="btnHost" to="." method="_on_btn_host_pressed"]
+[connection signal="pressed" from="btnJoin" to="." method="_on_btn_join_pressed"]

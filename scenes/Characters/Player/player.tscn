@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://damrl3fvyi1v2"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Player/player.gd" id="1_nvja3"]
+[ext_resource type="Texture2D" uid="uid://bfomj2rv7gsc8" path="res://icon.svg" id="2_b3bci"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjv1a"]
+bg_color = Color(0, 0, 0, 0.462745)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_www7n"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("Label:text")
+properties/1/spawn = true
+properties/1/sync = true
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(234, 128)
+script = ExtResource("1_nvja3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_b3bci")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -48.0
+offset_top = -55.0
+offset_right = 51.0
+offset_bottom = -29.0
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjv1a")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_www7n")
