@@ -3,6 +3,7 @@ extends Control
 @onready var playersList:ItemList = get_parent().get_node("PanelInfoPlayers/ItemList")
 @onready var PanelPlayersList = get_parent().get_node("PanelInfoPlayers")
 @onready var btnKick = get_parent().get_node("PanelInfoPlayers/btnKick")
+@onready var StatusPartida = get_parent().get_node("StatusInfo")
 @onready var inputName = $inputName
 @onready var cbxPlayers = $cbxPlayers
 
@@ -50,6 +51,7 @@ func connected_to_server():
 	print("Connected to Server")
 	sendPlayerInfo.rpc_id(1, inputName.text, multiplayer.get_unique_id())
 	CreateInfo.rpc_id(1,multiplayer.get_unique_id(),0)
+	StatusPartida.hide()
 	
 	
 #Se llama solo a los clientes
@@ -64,7 +66,7 @@ func close_connection() -> void:
 
 func _on_btn_host_pressed():
 	peer = ENetMultiplayerPeer.new()
-	var error = peer.create_server(port, cbxPlayers.value)
+	var error = peer.create_server(port, cbxPlayers.value-1)
 	if error != OK: 
 		printerr("Error cant host ", error)
 		match error:
@@ -92,6 +94,7 @@ func _on_btn_join_pressed():
 		get_parent().get_parent().get_node("bg").show()
 		PanelPlayersList.show()
 		btnKick.hide()
+		StatusPartida.show()
 		self.hide()
 		await renameComplete
 		addPlayer(multiplayer.get_unique_id())
